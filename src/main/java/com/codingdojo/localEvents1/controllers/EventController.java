@@ -94,7 +94,7 @@ public class EventController {
 	
 //DELETE
 	@RequestMapping("/events/delete/{id}")
-	public String deleteEvent(@PathVariable("id"), HttpSession session)
+	public String deleteEvent(@PathVariable("id")Long id, HttpSession session)
 	if(session.getAttribute("userId") == null) {
 		return "redirect:/logout";
 	}

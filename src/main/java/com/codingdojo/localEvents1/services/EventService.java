@@ -17,7 +17,7 @@ public class EventService {
 
 	
 //GET EVENT BY ID
-	public Optional<Event>findEventById(Long id) {
+	public Event findEventById(Long id) {
 		Optional<Event> result = eventRepo.findById(id);
 		if (result.isPresent()) {
 			return result.get();
