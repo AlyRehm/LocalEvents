@@ -23,6 +23,40 @@
 <body>
 	<div class="container">
 		<h1>Welcome --USER NAME--</h1>
+
+		<h3>All Events</h3>
+		<table>
+			<thead>
+				<th>Event</th>
+				<th>Date</th>
+				<th>Location</th>
+				<th>Price</th>
+				<th>Actions</th>
+			</thead>
+			<tbody>
+				<c:forEach var=""event" items="${event}">
+					<tr>
+						<td>
+							<a href="/events/${event.id}">${event.eventName}</a>
+						</td>
+						<td>
+							<c:out value="${event.eventDate}"></c:out>
+						</td>
+						<td>
+							<c:out value="${event.location}"></c:out>
+						</td>
+						<td>
+							<c:out value="${event.price}"></c:out>
+						</td>
+						<td>
+							<c:if test="${event.user.id==user.id}">
+								<a href="/event/${event.id}/edit">Edit</a>
+							</c:if>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	
 	</div>
 </body>
