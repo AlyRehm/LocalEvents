@@ -1,5 +1,6 @@
 package com.codingdojo.localEvents1.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -17,13 +18,30 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public User login(LoginUser user, BindingResult result) {
-		Optional<User> potentialUser = userRepository.findByEmail(user.getEmail());
-		if (!potentialUser.isPresent() || !BCrypt.checkpw(user.getPassword(), potentialUser.get().getPassword())){
+	public User login(LoginUser newLoginObject, BindingResult result) {
+		Optional<User> potentialUser = userRepository.findByEmail(newLoginObject.getEmail());
+		
+		if(!potentialUser.isPresent()) {
+			result.rejectValue("email", "Matches", "User not found!");
 			return null;
 		}
-		return potentialUser.get();
-	}
+		User user = potentialUser.get();
+		
+		if(!BCrypt.checkpw(newLoginObject.getPassword(), user.getPassword())) {
+        	result.rejectValue("password", "Matches", "Invalid Password!");
+        }
+        if(result.hasErrors()) {
+        return null;
+    }	
+        return user;
+    }
+		
+		
+//		if (!potentialUser.isPresent() || !BCrypt.checkpw(user.getPassword(), potentialUser.get().getPassword())){
+	//		return null;
+//		}
+//		return potentialUser.get();
+	
 	
 	public User register(User newUser, BindingResult result) {
 		Optional<User> potentialUser = userRepository.findByEmail(newUser.getEmail());
@@ -49,6 +67,14 @@ public class UserService {
 		} else {
 			return potentialUser.get();
 		}
+	}
+	
+	public List<User> allUsers(){
+		return userRepository.findAll();
+	}
+	
+	public User updateUser(User user) {
+		return userRepository.save(user);
 	}
 
 }

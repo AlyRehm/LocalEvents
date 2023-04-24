@@ -28,34 +28,34 @@ private UserService userService;
 	//CHECK THE 'USER' NAMES IN ALL THE ROUTES. ENSURE THEY MATCH UP WITH THE LOGIN/REG MODELS/SERVICES/CONTROLLERS
 	
 //DASHBOARD ROUTE
-	@GetMapping("/dashboard")
-	public String dashboard (Model model, HttpSession session) {
-		if (session.getAttribute("userId") == null) {
-			return "redirect:/logout";
-		}
-		Long userId = (Long)session.getAttribute("userId");
-		User user = userService.findById(userId);
-		
-		model.addAttribute("user", user);
-		model.addAttribute("events", eventService.allEvents());
-		return "dashboard.jsp";
-	} 
+	//@GetMapping("/dashboard")
+	//public String dashboard (Model model, HttpSession session) {
+	//	if (session.getAttribute("userId") == null) {
+		//	return "redirect:/logout";
+		//}
+		//Long userId = (Long)session.getAttribute("userId");
+	//	User user = userService.findById(userId);
+	//	
+	//	model.addAttribute("user", user);
+	//	model.addAttribute("events", eventService.allEvents());
+//		return "dashboard.jsp";
+//	} 
 	
 //CREATE NEW EVENT
-	@GetMapping("/events/new")
-	public String newEvent(@ModelAttribute("event") Event event, BindingResult result, HttpSession session,Model model) {
-		if (session.getAttribute("userId") == null) {
-			return "redirect:/logout";
-		}
-		Long userId = (Long)session.getAttribute("userId");
-			event.setUser(userService.findById(userId));
-		
-		if (result.hasErrors()) {
-			return "newEvent.jsp";
-		}
-		eventService.createEvent(event);
-		return "redirect:/dashboard";
-	}
+//	@GetMapping("/events/new")
+//	public String newEvent(@ModelAttribute("event") Event event, BindingResult result, HttpSession session,Model model) {
+//		if (session.getAttribute("userId") == null) {
+//			return "redirect:/logout";
+//		}
+//		Long userId = (Long)session.getAttribute("userId");
+//			event.setUser(userService.findById(userId));
+//		
+//		if (result.hasErrors()) {
+//			return "newEvent.jsp";
+//		}
+//		eventService.createEvent(event);
+//		return "redirect:/dashboard";
+//}
 	
 //VIEW EVENT DETAILS
 	@GetMapping("/event/{id}")

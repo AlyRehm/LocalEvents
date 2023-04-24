@@ -22,8 +22,10 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Welcome --USER NAME--</h1>
-
+		<h1>Welcome <c:out value="${user.username}"/></h1>
+		<p><a href="/event/new">New Event</a></p>
+		<p><a href="/account">Account</a></p>
+		<p><a href="/logout">Logout</a></p>
 		<h3>All Events</h3>
 		<table>
 			<thead>
@@ -34,7 +36,7 @@
 				<th>Actions</th>
 			</thead>
 			<tbody>
-				<c:forEach var=""event" items="${event}">
+				<c:forEach var="event" items="${events}">
 					<tr>
 						<td>
 							<a href="/events/${event.id}">${event.eventName}</a>
