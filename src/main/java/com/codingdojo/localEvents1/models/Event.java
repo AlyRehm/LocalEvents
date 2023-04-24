@@ -44,6 +44,7 @@ public class Event {
     private Integer price;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@NotNull(message="Please provide event date")
 	private Date eventDate;
 	
 	@Column(updatable=false)
@@ -58,7 +59,7 @@ public class Event {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-public User getUser() {
+	public User getUser() {
 		return user;
 	}
 

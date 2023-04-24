@@ -44,7 +44,7 @@ public class User {
     @Size(min=8, max=128, message="Confirm Password must be at least 8 characters")
     private String confirmPassword;
     
-    @Column(updatable=false)
+	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -52,7 +52,10 @@ public class User {
     
 	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
 	private List<Event> events;
-	 
+	
+	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
+	private List<Event> attendingEvents;
+	
     public User () {} 
 
 	public User(String username, String email, String password, String confirmPassword) {
@@ -71,6 +74,14 @@ public class User {
 	protected void onUpdate(){
 		this.updatedAt = new Date();
 	}
+	
+	  public List<Event> getAttendingEvents() {
+			return attendingEvents;
+		}
+
+		public void setAttendingEvents(List<Event> attendingEvents) {
+			this.attendingEvents = attendingEvents;
+		}
 
 	public Long getId() {
 		return id;

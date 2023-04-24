@@ -39,10 +39,11 @@
 				<c:forEach var="event" items="${events}">
 					<tr>
 						<td>
-							<a href="/events/${event.id}">${event.eventName}</a>
+							<a href="/event/${event.id}">${event.eventName}</a>
 						</td>
 						<td>
-							<c:out value="${event.eventDate}"></c:out>
+							<fmt:formatDate type = "date" 
+         						value = "${event.eventDate}" />
 						</td>
 						<td>
 							<c:out value="${event.location}"></c:out>
@@ -52,7 +53,10 @@
 						</td>
 						<td>
 							<c:if test="${event.user.id==user.id}">
-								<a href="/event/${event.id}/edit">Edit</a>
+								<a href="/event/${event.id}/editEvent">Edit</a>
+							</c:if>
+							<c:if test="${event.user.id!=user.id}">
+								<a href="/events/attend/${event.id}">Attend Event</a>
 							</c:if>
 						</td>
 					</tr>

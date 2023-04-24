@@ -17,10 +17,10 @@
 <body>
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
-            <h1>View Event</h1>
-            <a href="/new">New Event</a>
+            <h1>View Events</h1>
+            <a href="/event/new">New Event</a>
             <a href="/dashboard">Dashboard</a>
-            <a href="">Logout</a>
+            <a href="/logout">Logout</a>
         </div>
         <table class="table">
             <thead>
@@ -32,16 +32,18 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="event" items="${events}">
+                <c:forEach var="event" items="${userEvents}">
                     <tr>
-                        <td>${event.area}</td>
-                        <td>${event.type}</td>
-                        <td>${event.date}</td>
-                        <td>${event.price}</td>
+                        <td><c:out value="${event.location}"></c:out></td>
+                        <td><c:out value="${event.eventName}"></c:out></td>
+                        <td><c:out value="${event.eventDate}"></c:out></td>
+                        <td><c:out value="${event.price}"></c:out></td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
+        
+
         <!--add logic for session user events-->
         <table class="table">
             <thead>
@@ -53,14 +55,15 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="event" items="${events}">
+            <!-- where the attended events would go -->
+            <c:forEach var="event" items="${attendedEvents}">
                     <tr>
-                        <td>${event.area}</td>
-                        <td>${event.type}</td>
-                        <td>${event.date}</td>
-                        <td>${event.price}</td>
+                        <td><c:out value="${event.location}"></c:out></td>
+                        <td><c:out value="${event.eventName}"></c:out></td>
+                        <td><c:out value="${event.eventDate}"></c:out></td>
+                        <td><c:out value="${event.price}"></c:out></td>
                     </tr>
-                </c:forEach>
+            </c:forEach>
             </tbody>
         </table>
     </div>
