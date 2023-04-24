@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.codingdojo.localEvents1.models.Event;
+import com.codingdojo.localEvents1.models.User;
 import com.codingdojo.localEvents1.services.EventService;
+import com.codingdojo.localEvents1.services.UserService;
 
 public class EventController {
 //	@Autowired
-//	private UserService userService
+private UserService userService;
 	
 	@Autowired
 	private EventService eventService;
@@ -35,13 +37,13 @@ public class EventController {
 		User user = userService.findById(userId);
 		
 		model.addAttribute("user", user);
-		model.addAttribute("events", eventService.allEvents())
+		model.addAttribute("events", eventService.allEvents());
 		return "dashboard.jsp";
-	}
+	} 
 	
 //CREATE NEW EVENT
 	@GetMapping("/events/new")
-	public String newEvent(@ModelAttribute("event")Event event, HttpSession session,Model model) {
+	public String newEvent(@ModelAttribute("event") Event event, BindingResult result, HttpSession session,Model model) {
 		if (session.getAttribute("userId") == null) {
 			return "redirect:/logout";
 		}
@@ -88,17 +90,18 @@ public class EventController {
 		else {
 			event.setId(id);
 			eventService.updateEvent(event);
-			return "redirect:/events";
+			return "redirect:/events";}
 		}
-	}
+	
 	
 //DELETE
 	@RequestMapping("/events/delete/{id}")
-	public String deleteEvent(@PathVariable("id")Long id, HttpSession session)
+	public String deleteEvent(@PathVariable("id")Long id, HttpSession session) {
 	if(session.getAttribute("userId") == null) {
 		return "redirect:/logout";
 	}
 	Event event = eventService.findEventById(id);
 	eventService.deleteEvent(event);
 	return "redirect:/events";
-}
+}}
+

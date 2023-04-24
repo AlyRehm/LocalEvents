@@ -51,7 +51,15 @@ public class Event {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-//CONSTRUCTOR
+public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	//CONSTRUCTOR
 	public Event() {}
 
 //GETTERS & SETTERS
