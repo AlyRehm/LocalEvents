@@ -1,7 +1,6 @@
 package com.codingdojo.localEvents1.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -32,7 +31,7 @@ public class EventController {
 //TO DO
 	//CHECK THE 'USER' NAMES IN ALL THE ROUTES. ENSURE THEY MATCH UP WITH THE LOGIN/REG MODELS/SERVICES/CONTROLLERS
 	
-//DASHBOARD ROUTE
+// DASHBOARD
 	@GetMapping("/dashboard")
 	public String dashboard (Model model, HttpSession session) {
 		if (session.getAttribute("userId") == null) {
@@ -45,7 +44,20 @@ public class EventController {
 		model.addAttribute("events", eventService.allEvents());
 		return "dashboard.jsp";
 	} 
-//CREATE NEW EVENT
+	
+//	SEARCH FEATURE
+	@GetMapping("/search")
+	public String search(Model model, String keyword) {
+		if (keyword != null) {
+			model.addAttribute("events", eventService.findByKeyword(keyword)) ;
+		} else {
+			model.addAttribute("events", eventService.allEvents());
+		}
+		return "searchDashboard.jsp";
+	}
+			
+			
+// CREATE NEW EVENT
 	@GetMapping("/event/new")
 	public String newEvent(@ModelAttribute("event") Event event, Model model, HttpSession session) {
 		if (session.getAttribute("userId") == null) {
@@ -78,7 +90,8 @@ public class EventController {
 		eventService.updateEvent(unassignedEvent);
 		return "redirect:/dashboard";
 	}
-//VIEW EVENT DETAILS
+	
+// VIEW EVENT DETAILS
 	@GetMapping("/account")
 	public String account(Model model, HttpSession session) {
 		if (session.getAttribute("userId") == null) {
@@ -91,8 +104,10 @@ public class EventController {
 //		model.addAttribute("attendedEvents", user.getAttendingEvents());
 		return "account.jsp";
 	}
+		
+		
 	@GetMapping("/event/{id}")
-	public String viewEvent(@PathVariable("id")Long id, HttpSession session, Model model) {
+	public String viewEvent(@PathVariable("id") Long id, HttpSession session, Model model) {
 		if(session.getAttribute("userId") == null) {
 			return "redirect:/logout";
 			}
@@ -103,8 +118,9 @@ public class EventController {
 		model.addAttribute("event", event);
 			return "eventDetails.jsp";
 	}
+
 	
-//EDIT EVENT
+// EDIT EVENT
 	@GetMapping("/event/{id}/editEvent")
 	public String editEvent(@PathVariable("id") Long id, @Valid @ModelAttribute("event") Event event, BindingResult result, Model model, HttpSession session) {
 		if(session.getAttribute("userId") == null) {
@@ -130,7 +146,7 @@ public class EventController {
 		}
 	
 	
-//DELETE
+// DELETE
 	@RequestMapping("/events/delete/{id}")
 	public String deleteEvent(@PathVariable("id")Long id, HttpSession session, Model model) {
 	if(session.getAttribute("userId") == null) {
@@ -139,8 +155,10 @@ public class EventController {
 	Event event = eventService.findEventById(id);
 	eventService.deleteEvent(event);
 	return "redirect:/dashboard";
+	}
 }
-//ADDING ATTENDING EVENT TO USER
+
+	//ADDING ATTENDING EVENT TO USER
 //	@RequestMapping("/events/attend/{id}")
 //	public String attendEvent(@PathVariable("id") Long id, HttpSession session, Model model) {
 //		if(session.getAttribute("userId") == null) {
@@ -153,4 +171,4 @@ public class EventController {
 	//	userService.updateUser(user);
 	//	return "redirect:/dashboard";
 //	}
-}
+

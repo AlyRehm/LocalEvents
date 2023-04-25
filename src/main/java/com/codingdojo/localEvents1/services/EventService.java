@@ -25,12 +25,12 @@ public class EventService {
 		return null;
 	}
 	
-//FIND ALL EVENTS
+// FIND ALL EVENTS
 	public List<Event> allEvents(){
 		return eventRepo.findAll();
 	}
 
-//NEW EVENT
+// NEW EVENT
 	public Event createEvent(Event event) {
 		return eventRepo.save(event);
 	}
@@ -40,8 +40,13 @@ public class EventService {
 		return eventRepo.save(event);
 	}
 	
-//DELETE EVENT
+// DELETE EVENT
 	public void deleteEvent (Event event) {
 		eventRepo.delete(event);
 	}
+
+	public List<Event> findByKeyword(String keyword) {
+		return eventRepo.findByKeyword(keyword);
+	}
+
 }

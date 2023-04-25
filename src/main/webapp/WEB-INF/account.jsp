@@ -56,14 +56,14 @@
             </thead>
             <tbody>
             <!-- where the attended events would go -->
-            <c:forEach var="event" items="${attendedEvents}">
+           <%--  <c:forEach var="event" items="${attendedEvents}">
                     <tr>
                         <td><c:out value="${event.location}"></c:out></td>
                         <td><c:out value="${event.eventName}"></c:out></td>
                         <td><c:out value="${event.eventDate}"></c:out></td>
                         <td><c:out value="${event.price}"></c:out></td>
                     </tr>
-            </c:forEach>
+            </c:forEach> --%>
             </tbody>
         </table>
     </div>
