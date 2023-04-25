@@ -54,7 +54,7 @@ public class User {
 	private List<Event> events;
 	
 	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
-	private List<Event> attendingEvents;
+	private List<Event> attendedEvents;
 	
     public User () {} 
 
@@ -75,13 +75,6 @@ public class User {
 		this.updatedAt = new Date();
 	}
 	
-	  public List<Event> getAttendingEvents() {
-			return attendingEvents;
-		}
-
-		public void setAttendingEvents(List<Event> attendingEvents) {
-			this.attendingEvents = attendingEvents;
-		}
 
 	public Long getId() {
 		return id;
@@ -143,10 +136,17 @@ public class User {
 		return events;
 	}
 	
-	
 
 	public void setEvents(List<Event> events) {
 		this.events = events;
+	}
+
+	public List<Event> getAttendedEvents() {
+		return attendedEvents;
+	}
+
+	public void setAttendedEvents(List<Event> attendedEvents) {
+		this.attendedEvents = attendedEvents;
 	}
 	
 	
