@@ -21,11 +21,13 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 	
+	
 	@GetMapping("/")
 	public String index () {
 		return "redirect:/login";
 	}
 	
+
 	@GetMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("newLogin", new LoginUser());
@@ -33,14 +35,14 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login")
-	public String login(@Valid @ModelAttribute("newLogin") LoginUser loginUser, BindingResult result, Model model, HttpSession session) {
-		User user = userService.login(loginUser, result);
+	public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin, BindingResult result, Model model, HttpSession session) {
+		User user = userService.login(newLogin, result);
 		
-		if (user == null) {
+		if (result.hasErrors()) {
 			model.addAttribute("newUser", new User());
 			return "login.jsp";
 		} else {
-			session.setAttribute("userID", user.getId());
+			session.setAttribute("userId", user.getId());
 			return "redirect:/dashboard";
 		}
 	}
@@ -59,14 +61,14 @@ public class LoginController {
 			model.addAttribute("newLogin", new LoginUser());
 			return "register.jsp";
 		} else {
-			session.setAttribute("userID", newUser.getId());
+			session.setAttribute("userId", newUser.getId());
 			return "redirect:/dashboard";
 		}
 	}
 	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		session.setAttribute("userID", null);
+		session.setAttribute("userId", null);
 		return "redirect:/";
 	}
 }

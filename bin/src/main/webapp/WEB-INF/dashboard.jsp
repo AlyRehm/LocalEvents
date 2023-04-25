@@ -22,10 +22,8 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Welcome <c:out value="${user.username}"/></h1>
-		<p><a href="/event/new">New Event</a></p>
-		<p><a href="/account">Account</a></p>
-		<p><a href="/logout">Logout</a></p>
+		<h1>Welcome --USER NAME--</h1>
+
 		<h3>All Events</h3>
 		<table>
 			<thead>
@@ -36,14 +34,13 @@
 				<th>Actions</th>
 			</thead>
 			<tbody>
-				<c:forEach var="event" items="${events}">
+				<c:forEach var=""event" items="${event}">
 					<tr>
 						<td>
-							<a href="/event/${event.id}">${event.eventName}</a>
+							<a href="/events/${event.id}">${event.eventName}</a>
 						</td>
 						<td>
-							<fmt:formatDate type = "date" 
-         						value = "${event.eventDate}" />
+							<c:out value="${event.eventDate}"></c:out>
 						</td>
 						<td>
 							<c:out value="${event.location}"></c:out>
@@ -53,10 +50,7 @@
 						</td>
 						<td>
 							<c:if test="${event.user.id==user.id}">
-								<a href="/event/${event.id}/editEvent">Edit</a>
-							</c:if>
-							<c:if test="${event.user.id!=user.id}">
-								<a href="/events/attend/${event.id}">Attend Event</a>
+								<a href="/event/${event.id}/edit">Edit</a>
 							</c:if>
 						</td>
 					</tr>

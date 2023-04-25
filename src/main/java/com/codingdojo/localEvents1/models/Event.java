@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -17,6 +20,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
+@Table(name = "events")
 public class Event {
 
 	@Id
@@ -30,6 +34,9 @@ public class Event {
 	@NotEmpty(message="Please provide the event's location")
 	private String location;
 	
+	@NotEmpty(message="Type is required")
+	private String type;
+	
 	@NotEmpty(message="Please provide a description of the event")
 	private String description;
 	
@@ -37,6 +44,7 @@ public class Event {
     private Integer price;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@NotNull(message="Please provide event date")
 	private Date eventDate;
 	
 	@Column(updatable=false)
@@ -51,7 +59,15 @@ public class Event {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-//CONSTRUCTOR
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	//CONSTRUCTOR
 	public Event() {}
 
 //GETTERS & SETTERS
@@ -77,6 +93,14 @@ public class Event {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getDescription() {
@@ -119,7 +143,14 @@ public class Event {
 		this.updatedAt = updatedAt;
 	}
 	
-
+	@PrePersist
+    protected void onCreate(){
+        this.createdAt = new Date();
+    }
+    @PreUpdate
+    protected void onUpdate(){
+        this.updatedAt = new Date();
+    }
 
 	
 	

@@ -20,18 +20,20 @@
             <h2>Event</h2>
         </div>
         <div>
-            <p>Host: </p>
-            <p>Area: <c:out value="${event.area}"/></p>
-			<p>Date: <c:out value="${event.date}"/></p>
+            <p>Host: <c:out value="${event.user.username}"/> </p>
+            <p>Area: <c:out value="${event.location}"/></p>
+			<p>Date: <c:out value="${event.eventDate}"/></p>
 			<p>Price: $<c:out value="${event.price}"/></p>
 			<p>Description: <c:out value="${event.description}"/></p>
         </div>
         <div class="row align-items-center">
 			<div class="col-sm">
-				<a class="btn btn-secondary" href="" role="button">Edit</a>
-			</div>
-			<div class="col-sm">
-				<a class="btn btn-danger" href="" role="button">Delete</a>
+			<c:if test="${event.user.id==user.id}">
+				<div class="col-sm">
+					<a class="btn btn-secondary" href="/event/${event.id}/editEvent" role="button">Edit</a>
+				</div>
+					<a class="btn btn-danger" href="/events/delete/${event.id}" role="button">Delete</a>
+			</c:if>
 			</div>
 		</div>
     </div>

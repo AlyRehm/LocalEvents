@@ -18,41 +18,46 @@
     <div class="container">
         <div class="d-flex flex-row-reverse align-items-center">
             <a href="/dashboard">Dashboard</a>
-            <a href="">Logout</a>
+            <a href="/logout">Logout</a>
         </div>
         <div>
             <h2>New Event</h2>
         </div>
         <!--finish form-->
-        <form:form action="" method="post" modelAttribute="" class="form">
-            <form:hidden value="" path=""/>
+        <form:form action="/events/new" method="post" modelAttribute="event" class="form">
+            <form:input type="hidden" value="${user.id}" path="user"/>
             <div class="form-row">
-                <form:label class="form-label" path="area">Area:</form:label>
-                <form:errors class="text-danger" path="area"/>
-                <form:input class="form-control" path="area"/>
+                <form:label class="form-label" path="eventName">Event Name:</form:label>
+                <p><form:errors class="text-danger" path="eventName"/></p>
+                <form:input class="form-control" path="eventName" type="text"/>
+            </div>
+            <div class="form-row">
+                <form:label class="form-label" path="location">Area:</form:label>
+                <p><form:errors class="text-danger" path="location"/></p>
+                <form:input class="form-control" path="location" type="text"/>
             </div>
             <div class="form-row">
                 <form:label class="form-label" path="type">Event Type:</form:label>
-                <form:errors class="text-danger" path="type"/>
-                <form:input class="form-control" path="type"/>
+                <p><form:errors class="text-danger" path="type"/></p>
+                <form:input class="form-control" path="type" type="text"/>
             </div>
             <div class="form-row">
                 <form:label class="form-label" path="description">Description:</form:label>
-                <form:errors class="text-danger" path="description"/>
-                <form:textarea class="form-control" path="description"/>
+                <p><form:errors class="text-danger" path="description"/></p>
+                <form:textarea class="form-control" path="description" type="text"/>
             </div>
             <div class="form-row">
                 <form:label class="form-label" path="price">Price:</form:label>
-                <form:errors class="text-danger" path="price"/>
+                <p><form:errors class="text-danger" path="price"/></p>
                 <form:input class="form-control" type="number" path="price"/>
             </div>
             <div class="form-row">
-                <form:label class="form-label" path="date">Date:</form:label>
-                <form:errors class="text-danger" path="date"/>
-                <form:input class="date" path="date" value='<fmt:formatDate value="${cForm.date}" pattern="MM-dd-yyyy" />'/>
+                <form:label class="form-label" path="eventDate">Date:</form:label>
+                <p><form:errors class="text-danger" path="eventDate"/></p>
+                <form:input class="date" path="eventDate" type="date" value='<fmt:formatDate value="${cForm.date}" pattern="MM-dd-yyyy" />'/>
             </div>
             <div>
-                <button class="btn btn-primary">Create</button>
+                <input type="submit" value="Submit" class="button"  class="btn btn-primary"/>
             </div>
         </form:form>
     </div>
