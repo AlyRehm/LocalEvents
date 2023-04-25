@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!--previously I used <meta charset="UTF-8">-->
 <meta charset="ISO-8859-1">
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/main.css"/>
@@ -23,7 +22,6 @@
         <div>
             <h2>New Event</h2>
         </div>
-        <!--finish form-->
         <form:form action="/events/new" method="post" modelAttribute="event" class="form">
             <form:input type="hidden" value="${user.id}" path="user"/>
             <div class="form-row">
