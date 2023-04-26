@@ -26,7 +26,7 @@
 			</div>
 		</div>
 		<div class="d-flex justify-content-center">
-			<h3>All Events</h3>
+			<h3>All Local Events</h3>
 		</div>
 		<form action="/search" method="GET">
 			<div class="d-flex inline">
@@ -59,7 +59,7 @@
 							<c:out value="${event.location}"></c:out>
 						</td>
 						<td>
-							<c:out value="${event.price}"></c:out>
+							$<c:out value="${event.price}"></c:out>
 						</td>
 						<td>
 							<c:if test="${event.user.id==user.id}">

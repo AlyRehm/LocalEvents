@@ -16,15 +16,17 @@
 <body>
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
-            <h1>View Events</h1>
-            <a href="/event/new">New Event</a>
-            <a href="/dashboard">Dashboard</a>
-            <a href="/logout">Logout</a>
+            <h1>My Events</h1>
+            <div>
+            	<a href="/event/new">New Event</a>
+            	<a href="/dashboard">Dashboard</a>
+            	<a href="/logout">Logout</a>
+            </div>
         </div>
         <table class="table">
             <thead>
                 <tr>
-                    <th>Area</th>
+                    <th>Location</th>
                     <th>Event</th>
                     <th>Date</th>
                     <th>Price</th>
@@ -35,8 +37,11 @@
                     <tr>
                         <td><c:out value="${event.location}"></c:out></td>
                         <td><c:out value="${event.eventName}"></c:out></td>
-                        <td><c:out value="${event.eventDate}"></c:out></td>
-                        <td><c:out value="${event.price}"></c:out></td>
+                        <td>
+                        	<fmt:formatDate type = "date" 
+         						value = "${event.eventDate}" />
+         				</td>
+                        <td>$<c:out value="${event.price}"></c:out></td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -46,7 +51,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Area</th>
+                    <th>Location</th>
                     <th>Event</th>
                     <th>Date</th>
                     <th>Price</th>

@@ -15,15 +15,25 @@
 </head>
 <body>
     <div class = "container">
-        <div>
-            <h2>Event</h2>
+        <div class="d-flex justify-content-between align-items-center">
+            <h2><c:out value="${event.eventName}"></c:out></h2>
+            <div>	
+            	<a href="/event/new">New Event</a>
+            	<a href="/dashboard">Dashboard</a>
+            	<a href="/logout">Logout</a>
+        	</div>
         </div>
         <div>
-            <p>Host: <c:out value="${event.user.username}"/> </p>
-            <p>Area: <c:out value="${event.location}"/></p>
-			<p>Date: <c:out value="${event.eventDate}"/></p>
-			<p>Price: $<c:out value="${event.price}"/></p>
-			<p>Description: <c:out value="${event.description}"/></p>
+            <p><span class="text-uppercase fw-bold">Host:</span> <c:out value="${event.user.username}"/> </p>
+            <p><span class="text-uppercase fw-bold">Location: </span><c:out value="${event.location}"/></p>
+			<p> <span class="text-uppercase fw-bold">Date: 	</span>
+				<fmt:formatDate type = "date" 
+         			value = "${event.eventDate}" />
+			</p>
+			
+			
+			<p><span class="text-uppercase fw-bold">Price: </span> $<c:out value="${event.price}"/></p>
+			<p><span class="text-uppercase fw-bold">Description: </span><c:out value="${event.description}"/></p>
         </div>
         <div class="row align-items-center">
 			<div class="col-sm">
