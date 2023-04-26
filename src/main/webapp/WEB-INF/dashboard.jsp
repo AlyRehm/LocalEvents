@@ -19,10 +19,10 @@
 			<div>
 				<h1>Welcome <c:out value="${user.username}"/></h1>
 			</div>
-			<div>
-				<p><a href="/event/new">New Event</a></p>
-				<p><a href="/account">Account</a></p>
-				<p><a href="/logout">Logout</a></p>
+			<div class="row align-items-center">
+				<a href="/event/new">New Event</a>
+				<a href="/account">Account</a>
+				<a href="/logout">Logout</a>
 			</div>
 		</div>
 		<div class="d-flex justify-content-center">

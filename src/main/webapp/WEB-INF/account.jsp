@@ -17,7 +17,7 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
             <h1>My Events</h1>
-            <div>
+            <div class="row align-items-center">
             	<a href="/event/new">New Event</a>
             	<a href="/dashboard">Dashboard</a>
             	<a href="/logout">Logout</a>
