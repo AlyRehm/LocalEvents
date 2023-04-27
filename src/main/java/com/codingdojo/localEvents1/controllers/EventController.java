@@ -28,8 +28,6 @@ public class EventController {
 	@Autowired
 	private EventService eventService;
 
-//TO DO
-	//CHECK THE 'USER' NAMES IN ALL THE ROUTES. ENSURE THEY MATCH UP WITH THE LOGIN/REG MODELS/SERVICES/CONTROLLERS
 	
 // DASHBOARD
 	@GetMapping("/dashboard")

@@ -65,9 +65,9 @@
 							<c:if test="${event.user.id==user.id}">
 								<a href="/event/${event.id}/editEvent">Edit</a>
 							</c:if>
-							<c:if test="${event.user.id!=user.id}">
+							<!-- <c:if test="${event.user.id!=user.id}">
 								<a href="/events/attend/${event.id}">Attend Event</a>
-							</c:if>
+							</c:if> -->
 						</td>
 					</tr>
 				</c:forEach>
