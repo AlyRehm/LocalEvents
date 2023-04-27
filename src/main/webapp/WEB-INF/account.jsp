@@ -16,8 +16,9 @@
 <body>
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
+
             <h1><c:out value="${user.username}"></c:out>'s Account</h1>
-            <div>
+
             	<a href="/event/new">New Event</a>
             	<a href="/dashboard">Dashboard</a>
             	<a href="/logout">Logout</a>
