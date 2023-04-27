@@ -58,8 +58,8 @@
                 </tr>
             </thead>
             <tbody>
-            <!-- where the attended events would go -->
-           <!--  <c:forEach var="event" items="${attendedEvents}">
+            where the attended events would go -->
+            <!--  <c:forEach var="event" items="${attendedEvents}">
                     <tr>
                         <td><c:out value="${event.location}"></c:out></td>
                         <td><c:out value="${event.eventName}"></c:out></td>
