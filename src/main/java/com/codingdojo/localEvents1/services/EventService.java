@@ -45,8 +45,13 @@ public class EventService {
 		eventRepo.delete(event);
 	}
 
+//EVENT SEARCH BAR	
 	public List<Event> findByKeyword(String keyword) {
 		return eventRepo.findByKeyword(keyword);
 	}
 
+////ATTENDED EVENTS
+//	public List<Event>attendedEvents(){
+//		return
+//	}
 }

@@ -59,6 +59,12 @@ public class Event {
 	@JoinColumn(name="user_id")
 	private User user;
 	
+
+//CONSTRUCTOR
+	public Event() {}
+
+//GETTERS & SETTERS
+	
 	public User getUser() {
 		return user;
 	}
@@ -66,11 +72,6 @@ public class Event {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	//CONSTRUCTOR
-	public Event() {}
-
-//GETTERS & SETTERS
 	public Long getId() {
 		return id;
 	}

@@ -16,7 +16,7 @@
 <body>
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
-            <h1>My Events</h1>
+            <h1><c:out value="${user.username}"></c:out>'s Account</h1>
             <div>
             	<a href="/event/new">New Event</a>
             	<a href="/dashboard">Dashboard</a>
@@ -48,7 +48,7 @@
         </table>
         
         <!--add logic for session user events-->
-        <table class="table">
+        <!-- <table class="table">
             <thead>
                 <tr>
                     <th>Location</th>
@@ -59,16 +59,16 @@
             </thead>
             <tbody>
             <!-- where the attended events would go -->
-           <%--  <c:forEach var="event" items="${attendedEvents}">
+           <!--  <c:forEach var="event" items="${attendedEvents}">
                     <tr>
                         <td><c:out value="${event.location}"></c:out></td>
                         <td><c:out value="${event.eventName}"></c:out></td>
                         <td><c:out value="${event.eventDate}"></c:out></td>
                         <td><c:out value="${event.price}"></c:out></td>
                     </tr>
-            </c:forEach> --%>
+            </c:forEach> 
             </tbody>
-        </table>
+        </table> -->
     </div>
 </body>
 </html>
