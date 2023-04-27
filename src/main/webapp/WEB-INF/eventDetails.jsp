@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page isErrorPage="true" %>
 <!DOCTYPE html>
@@ -37,7 +39,7 @@
         </div>
         <div class="row align-items-center">
 			<div class="col-sm">
-			<c:if test="${event.user.id==user.id}">
+			<c:if test="${event.user.id==userId}">
 				<div class="col-sm">
 					<a class="btn btn-secondary" href="/event/${event.id}/editEvent" role="button">Edit</a>
 				</div>
@@ -45,6 +47,9 @@
 			</c:if>
 			</div>
 		</div>
+		
+		
+		
 		
 		
     </div>

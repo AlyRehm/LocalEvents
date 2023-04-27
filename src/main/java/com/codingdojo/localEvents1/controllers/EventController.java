@@ -45,9 +45,16 @@ public class EventController {
 	
 //	SEARCH FEATURE
 	@GetMapping("/search")
-	public String search(Model model, String keyword) {
+	public String search(Model model, String keyword, HttpSession session) {
+		if (session.getAttribute("userId") == null) {
+			return "redirect:/logout";
+		}
 		if (keyword != null) {
-			model.addAttribute("events", eventService.findByKeyword(keyword)) ;
+			model.addAttribute("events", eventService.findByKeyword(keyword));
+			
+			Long userId = (Long) session.getAttribute("userId");
+			User user = userService.findById(userId);
+			model.addAttribute("user", user);
 		} else {
 			model.addAttribute("events", eventService.allEvents());
 		}
@@ -105,13 +112,11 @@ public class EventController {
 		
 		
 	@GetMapping("/event/{id}")
-	public String viewEvent(@PathVariable("id") Long id, HttpSession session, Model model) {
+	public String viewEvent(Model model, @PathVariable("id") Long id, HttpSession session) {
 		if(session.getAttribute("userId") == null) {
 			return "redirect:/logout";
-			}
-		Long userId = (Long) session.getAttribute("userId");
-		User user = userService.findById(userId);
-		model.addAttribute("user", user);
+		}
+
 		Event event = eventService.findEventById(id);
 		model.addAttribute("event", event);
 			return "eventDetails.jsp";

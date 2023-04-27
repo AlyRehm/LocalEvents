@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="/css/main.css"/>
 		<script src="/webjars/jquery/jquery.min.js"></script>
 		<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-	<title>Edit Your Event</title>
+	<title>Dashboard</title>
 </head>
 <body>
 	<div class="container">
@@ -43,7 +43,6 @@
 				<th scope="col">Date</th>
 				<th scope="col">Location</th>
 				<th scope="col">Price</th>
-				<th scope="col">Actions</th>
 			</thead>
 			<tbody>
 				<c:forEach var="event" items="${events}">
@@ -60,14 +59,6 @@
 						</td>
 						<td>
 							$<c:out value="${event.price}"></c:out>
-						</td>
-						<td>
-							<c:if test="${event.user.id==user.id}">
-								<a href="/event/${event.id}/editEvent">Edit</a>
-							</c:if>
-							<!-- <c:if test="${event.user.id!=user.id}">
-								<a href="/events/attend/${event.id}">Attend Event</a>
-							</c:if> -->
 						</td>
 					</tr>
 				</c:forEach>
